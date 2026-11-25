@@ -1,0 +1,934 @@
+.ta-page {
+  --pink: #168B5C;
+  --rose: #fbd5df;
+  --pink-light: #fff0f4;
+  min-height: 100vh;
+  padding: 20px 12px 38px;
+  background: radial-gradient(
+    circle at 50% 0%,
+    #fff9fb 0%,
+    #ffe3e9 45%,
+    #fbd1dc 100%
+  );
+  font-family: Arial, "Segoe UI", sans-serif;
+  color: #4b1830;
+  box-sizing: border-box;
+}
+.ta-page * {
+  box-sizing: border-box;
+}
+.ta-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.ta-heading {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 8px;
+}
+.ta-heading h1 {
+  margin: 0;
+  color: var(--pink);
+  font-size: clamp(20px, 2.25vw, 37px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: 0.2px;
+  text-shadow: 1px 2px #fff;
+}
+.ta-bunny {
+  font-size: clamp(34px, 5vw, 70px);
+}
+.ta-heart {
+  font-size: 30px;
+}
+.ta-controls {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.ta-month,
+.ta-teacher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: #fff7f9;
+  border: 2px solid #fff;
+  border-radius: 40px;
+  box-shadow: 0 4px 18px #e990a744;
+  color: var(--pink);
+  font-weight: 800;
+  font-size: 18px;
+  white-space: nowrap;
+}
+.ta-month select,
+.ta-teacher select,
+.ta-month input {
+  border: 0;
+  background: transparent;
+  color: var(--pink);
+  font: inherit;
+  outline: none;
+  max-width: 300px;
+}
+.ta-month input {
+  width: 74px;
+}
+.ta-teacher select {
+  max-width: 300px;
+}
+.ta-hint {
+  display: none;
+  font-size: 12px;
+  color: #9e4364;
+  margin: 0 0 8px;
+}
+.ta-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border: 5px solid #fff;
+  border-radius: 24px;
+  background: #fff9fb;
+  box-shadow: 0 6px 22px #e69fb43d;
+}
+.ta-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  min-width: 1530px;
+  table-layout: fixed;
+  text-align: center;
+  font-size: 14px;
+  color: #241b20;
+}
+.ta-table th,
+.ta-table td {
+  border-right: 1px solid #f6d2db;
+  border-bottom: 1px solid #f6d2db;
+  padding: 6px 2px;
+  height: 59px;
+}
+.ta-table th {
+  background: linear-gradient(#ffdae3, #f9c6d5);
+  color: #a20a41;
+  font-weight: 800;
+  height: 76px;
+  font-size: 15px;
+}
+.ta-table th small {
+  display: block;
+  margin-top: 7px;
+  font-size: 12px;
+}
+.ta-table th:not(.ta-name, .ta-stt, .ta-summary, .ta-owner) {
+  width: 35px;
+}
+.ta-table .ta-stt {
+  width: 44px;
+}
+.ta-table .ta-name {
+  width: 154px;
+}
+.ta-table .ta-summary {
+  width: 72px;
+}
+.ta-table .ta-owner {
+  width: 92px;
+}
+.ta-table tbody tr:nth-child(even) td {
+  background-color: #fff1f4;
+}
+.ta-table tbody tr:nth-child(odd) td {
+  background-color: #F7F9F8;
+}
+
+/* Tất cả ô Thứ 7, Chủ nhật đều có nền hồng đậm */
+.ta-table thead th.ta-weekend,
+.ta-table tbody tr:nth-child(odd) td.ta-weekend,
+.ta-table tbody tr:nth-child(even) td.ta-weekend {
+  background-color: #f5b9ca;
+}
+
+.ta-student {
+  text-align: left;
+  white-space: nowrap;
+  font-size: 15px;
+}
+.ta-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 6px;
+  background: #fff;
+  border: 2px solid #f9d8e0;
+  border-radius: 50%;
+  font-size: 26px;
+  vertical-align: middle;
+}
+.ta-bubble {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid #d7d5d6;
+  background: #f8f8f8;
+  color: #111;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.ta-bubble:hover {
+  transform: scale(1.12);
+  box-shadow: 0 2px 8px #a52c5c55;
+}
+.ta-partone {
+  background: #f5d93a;
+  border-color: #f5d93a;
+}
+.ta-one {
+  background: #b9ddff;
+  border-color: #a7ceff;
+}
+.ta-onehalf {
+  background: #e2a7ac;
+  border-color: #d29fa4;
+}
+.ta-two {
+  background: #bb515a;
+  border-color: #bb515a;
+  color: white;
+}
+.ta-towhalf {
+  background: #e68b14;
+  border-color: #e68b14;
+  color: white;
+}
+.ta-three {
+  background: red;
+  border-color: red;
+  color: white;
+}
+.ta-absent {
+  background: #ff626c;
+  border-color: #ff626c;
+  color: white;
+  font-size: 20px;
+}
+.ta-total {
+  font-size: 18px;
+  font-weight: 900;
+}
+.ta-missing {
+  font-size: 18px;
+  font-weight: 900;
+  color: #fa2b61;
+}
+.ta-owner-cell {
+  white-space: nowrap;
+}
+.ta-no-data {
+  text-align: center;
+  padding: 20px;
+}
+.ta-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-top: 18px;
+}
+.ta-footer-card {
+  min-height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+  padding: 10px 15px;
+  background: #fff8fa;
+  border: 2px solid white;
+  border-radius: 23px;
+  color: var(--pink);
+  font-size: clamp(15px, 1.5vw, 24px);
+  box-shadow: 0 4px 16px #efa7bc3a;
+}
+.ta-footer-card b {
+  font-size: clamp(27px, 3vw, 42px);
+  padding: 8px 20px;
+  min-width: 100px;
+  text-align: center;
+  border-radius: 16px;
+  background: #fbd9e2;
+}
+.ta-decoration {
+  font-size: 29px;
+  white-space: nowrap;
+}
+.ta-settings {
+  margin-top: 18px;
+  color: #9d4b6b;
+  font-size: 13px;
+}
+.ta-settings summary {
+  cursor: pointer;
+}
+.ta-settings label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 12px 0 0;
+}
+.ta-settings input {
+  padding: 5px;
+  border: 1px solid #eab4c4;
+  border-radius: 8px;
+}
+.ta-overlay {
+  position: fixed;
+  inset: 0;
+  background: #4a203088;
+  display: grid;
+  place-items: center;
+  z-index: 30;
+  padding: 15px;
+}
+.ta-dialog {
+  background: #fff7fa;
+  border: 3px solid white;
+  border-radius: 24px;
+  padding: 24px;
+  width: min(430px, 100%);
+  box-shadow: 0 20px 60px #4d102944;
+}
+.ta-dialog h2 {
+  color: var(--pink);
+  margin: 0;
+}
+.ta-dialog p {
+  color: #8d4b66;
+}
+.ta-choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+}
+.ta-choices button,
+.ta-actions button {
+  padding: 11px 8px;
+  border: 1px solid #f1b8cb;
+  border-radius: 12px;
+  background: white;
+  color: #168B5C;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ta-choices button.selected {
+  background: #f8c9d9;
+  border: 2px solid #bc2257;
+}
+.ta-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.ta-actions .ta-primary {
+  background: #b30e4a;
+  color: white;
+}
+@media (max-width: 1100px) {
+  .ta-header {
+    align-items: flex-start;
+  }
+  .ta-heading {
+    width: 100%;
+  }
+  .ta-hint {
+    display: block;
+  }
+  .ta-table-scroll {
+    border-radius: 17px;
+  }
+  .ta-table {
+    min-width: 1450px;
+  }
+  .ta-footer-card {
+    font-size: 16px;
+  }
+}
+@media (max-width: 640px) {
+  .ta-page {
+    padding: 12px 8px 24px;
+  }
+  .ta-heading h1 {
+    font-size: 21px;
+  }
+  .ta-bunny {
+    font-size: 38px;
+  }
+  .ta-heart {
+    font-size: 19px;
+  }
+  .ta-controls {
+    gap: 8px;
+    width: 100%;
+  }
+  .ta-month,
+  .ta-teacher {
+    padding: 9px 12px;
+    font-size: 13px;
+    flex: 1;
+    justify-content: center;
+  }
+  .ta-month select,
+  .ta-month input,
+  .ta-teacher select {
+    font-size: 13px;
+  }
+  .ta-month input {
+    width: 54px;
+  }
+  .ta-table-scroll {
+    border-width: 3px;
+  }
+  .ta-table {
+    font-size: 12px;
+  }
+  .ta-footer {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .ta-footer-card {
+    min-height: 72px;
+    font-size: 15px;
+  }
+  .ta-footer-card b {
+    font-size: 28px;
+  }
+  .ta-decoration {
+    font-size: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ta-bubble {
+    transition: none;
+  }
+}
+
+/* Mobile: cards + calendar with seven columns, no horizontal scrolling */
+.ta-mobile-list {
+  display: none;
+}
+@media (max-width: 700px) {
+  .ta-page {
+    padding: 14px 12px 30px;
+    overflow-x: clip;
+  }
+  .ta-header {
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .ta-heading {
+    gap: 9px;
+    padding: 10px 4px 0;
+  }
+  .ta-heading h1 {
+    font-size: clamp(18px, 5vw, 23px);
+    line-height: 1.25;
+  }
+  .ta-bunny {
+    font-size: 38px;
+  }
+  .ta-heart {
+    font-size: 20px;
+  }
+  .ta-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+    width: 100%;
+  }
+  .ta-month,
+  .ta-teacher {
+    min-height: 48px;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+  .ta-month select,
+  .ta-month input,
+  .ta-teacher select {
+    font-size: 15px;
+  }
+  .ta-teacher select {
+    max-width: 65%;
+  }
+  .ta-hint {
+    display: block;
+    margin: 0 2px 14px;
+    text-align: center;
+    font-size: 12px;
+  }
+  .ta-table-scroll {
+    display: none;
+  }
+  .ta-mobile-list {
+    display: grid;
+    gap: 16px;
+  }
+  .ta-mobile-card {
+    min-width: 0;
+    overflow: hidden;
+    padding: 15px 12px 14px;
+    background: #fffafc;
+    border: 2px solid #fff;
+    border-radius: 22px;
+    box-shadow: 0 5px 18px #dc7e9a33;
+  }
+  .ta-mobile-student-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 12px;
+  }
+  .ta-mobile-identity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .ta-mobile-identity .ta-avatar {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    font-size: 29px;
+    margin: 0;
+  }
+  .ta-mobile-index {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    font-weight: 800;
+    color: #c36a89;
+  }
+  .ta-mobile-identity h2 {
+    margin: 3px 0;
+    font-size: 19px;
+    line-height: 1.1;
+    color: #8f123f;
+  }
+  .ta-mobile-identity small {
+    color: #8c6a78;
+    font-size: 12px;
+  }
+  .ta-mobile-progress {
+    flex-shrink: 0;
+    padding: 8px 9px;
+    background: #fce0e9;
+    border-radius: 12px;
+    color: #168B5C;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .ta-mobile-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-bottom: 15px;
+  }
+  .ta-mobile-metrics > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    padding: 11px 10px;
+    background: #fff0f5;
+    border: 1px solid #f9d7e2;
+    border-radius: 13px;
+  }
+  .ta-mobile-metrics span {
+    font-size: 12px;
+    color: #8e4963;
+  }
+  .ta-mobile-metrics strong {
+    font-size: 20px;
+    color: #8c1944;
+    white-space: nowrap;
+  }
+  .ta-mobile-metrics strong small {
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .ta-mobile-metrics .ta-mobile-shortfall {
+    color: #f42c65;
+  }
+  .ta-mobile-calendar-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    margin: 0 1px 10px;
+    font-size: 13px;
+    color: #9c1748;
+  }
+  .ta-mobile-calendar-title span {
+    font-size: 12px;
+    color: #a35e76;
+  }
+  .ta-mobile-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .ta-mobile-weekday {
+    text-align: center;
+    padding: 9px 0;
+    font-size: 12px;
+    font-weight: 800;
+    color: #168B5C;
+    background: #ffe5ed;
+    border-radius: 8px;
+  }
+  .ta-mobile-weekend.ta-mobile-weekday {
+    background: #f6bbce;
+  }
+  .ta-mobile-day {
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    min-width: 0;
+    min-height: 64px;
+    padding: 7px 1px 5px;
+    border: 1px solid #f6dce4;
+    border-radius: 10px;
+    background: #fff7fa;
+    cursor: pointer;
+  }
+  .ta-mobile-day.ta-mobile-weekend {
+    background: #f9d2df;
+    border-color: #f3bfd0;
+  }
+  .ta-mobile-day:focus-visible {
+    outline: 3px solid #b80f4c;
+    outline-offset: 1px;
+  }
+  .ta-mobile-day-number {
+    font-size: 12px;
+    line-height: 1;
+    color: #7f3752;
+    font-weight: 800;
+  }
+  .ta-mobile-day .ta-bubble {
+    width: 27px;
+    height: 27px;
+    font-size: 12px;
+    pointer-events: none;
+  }
+  .ta-mobile-day .ta-absent {
+    font-size: 21px;
+  }
+  .ta-mobile-blank {
+    min-height: 64px;
+  }
+  .ta-footer {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .ta-footer-card {
+    min-height: 74px;
+    padding: 9px 12px;
+    gap: 8px;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+  .ta-footer-card b {
+    font-size: 26px;
+    min-width: 68px;
+    padding: 7px 12px;
+  }
+  .ta-decoration {
+    font-size: 22px;
+  }
+  .ta-settings {
+    margin-top: 16px;
+  }
+  .ta-dialog {
+    padding: 20px 16px;
+  }
+  .ta-choices {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 360px) {
+  .ta-page {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+  .ta-mobile-card {
+    padding: 12px 8px;
+  }
+  .ta-mobile-calendar {
+    gap: 3px;
+  }
+  .ta-mobile-day {
+    min-height: 59px;
+  }
+  .ta-mobile-day .ta-bubble {
+    width: 24px;
+    height: 24px;
+  }
+  .ta-mobile-progress {
+    font-size: 11px;
+  }
+}
+/* TOGGLE NGÀY / ĐÊM */
+/* Student information */
+.ta-student-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ta-student-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* Day / Night toggle */
+.ta-mode-toggle {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid #f1c1ce;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.ta-mode-toggle.is-day {
+  background: #fff0c7;
+  border-color: #f5d68d;
+}
+
+.ta-mode-toggle.is-night {
+  background: #e8dfff;
+  border-color: #c7b5f4;
+}
+
+.ta-mode-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.ta-mode-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 10px #e6a0b455;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .ta-student-info {
+    gap: 6px;
+  }
+
+  .ta-student-name-row {
+    gap: 5px;
+  }
+
+  .ta-mode-toggle {
+    width: 28px;
+    height: 28px;
+  }
+
+  .ta-mode-icon {
+    font-size: 16px;
+  }
+}
+/* MOBILE SÁNG TỐI */
+/* Mobile: tên trẻ và nút ngày/đêm */
+@media (max-width: 640px) {
+  .ta-mobile-student-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 4px;
+  }
+
+  .ta-mobile-name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .ta-mobile-name-row h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: #168B5C;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .ta-mobile-name-row .ta-mode-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .ta-mobile-name-row .ta-mode-toggle.is-day {
+    background: #fff0c7;
+    border: 1.5px solid #f5d68d;
+  }
+
+  .ta-mobile-name-row .ta-mode-toggle.is-night {
+    background: #e8dfff;
+    border: 1.5px solid #c7b5f4;
+  }
+
+  .ta-mobile-name-row .ta-mode-icon {
+    font-size: 17px;
+    line-height: 1;
+  }
+}
+.ta-avatar {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  flex: 0 0 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.ta-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+/* Giữ tên trẻ trong phạm vi cột */
+.ta-table .ta-student {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ta-student-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  width: 100%;
+}
+
+.ta-student-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Tên trẻ tối đa 2 dòng */
+.ta-student-name-row strong {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* Nút ngày/đêm không bị co hoặc tràn */
+.ta-student-name-row .ta-mode-toggle {
+  flex: 0 0 auto;
+}
+
+/* Avatar luôn giữ nguyên kích thước */
+.ta-student-info .ta-avatar {
+  flex-shrink: 0;
+}
+
+/* Cột tên trẻ trên PC */
+.ta-table th.ta-name,
+.ta-table td.ta-student {
+  min-width: 150px;
+  width: 150px;
+}
+
+/* Avatar + tên + biểu tượng */
+.ta-table .ta-student-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* Tên trẻ và biểu tượng nằm cùng hàng */
+.ta-table .ta-student-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Tên trẻ không bị cắt */
+.ta-table .ta-student-name-row strong {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* Biểu tượng ngày/đêm không bị co */
+.ta-table .ta-mode-toggle {
+  flex-shrink: 0;
+}

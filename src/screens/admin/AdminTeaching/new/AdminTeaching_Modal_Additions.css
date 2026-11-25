@@ -1,0 +1,56 @@
+/* Modal xác nhận Ngừng dạy / Xóa phân công */
+.at-confirm-overlay { z-index: 2100; }
+.at-confirm-dialog {
+  box-sizing: border-box;
+  width: min(100%, 440px);
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #F5D5D8;
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 20px 65px #03490b30;
+  text-align: center;
+  color: #AD2837;
+}
+.at-confirm-icon {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  font-size: 27px;
+  background: #fff4e3;
+}
+.at-confirm-icon.delete { background: #FFF1F3; }
+.at-confirm-dialog h2 { font-size: 21px; margin: 0 0 12px; color: #AD2837; }
+.at-confirm-dialog p { margin: 0 0 14px; line-height: 1.6; color: #392828; }
+.at-confirm-info {
+  background: #f8f1f1;
+  border: 1px solid #F5D5D8;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #632d2d;
+  text-align: left;
+}
+.at-confirm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+.at-confirm-actions button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.at-confirm-actions button:disabled { opacity: .55; cursor: not-allowed; }
+.at-confirm-cancel { background: #f3ebeb; color: #AD2837; }
+.at-confirm-stop { background: #e7a52e; color: #fff; }
+.at-confirm-delete { background: #db4b4b; color: #fff; }
+@media (max-width: 700px) {
+  .at-confirm-dialog { padding: 20px 16px; border-radius: 18px; }
+  .at-confirm-dialog h2 { font-size: 19px; }
+}

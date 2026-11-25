@@ -1,0 +1,47 @@
+/* Ngoi Sao / Emerald Green + Ruby Red. Presentation only; preserve app behavior. */
+:root {
+ --ns-primary:#168B5C; --ns-primary-hover:#0F704A; --ns-primary-soft:#DFF4E9;
+ --ns-accent:#D83B45; --ns-accent-soft:#FCE8EA;
+ --ns-surface:#FFFFFF; --ns-app-bg:#F7F9F8; --ns-neutral-border:#E5E7EB;
+ --nsx-green:#168B5C; --nsx-green-dark:#0F704A; --nsx-green-deep:#0B5D3E;
+ --nsx-green-soft:#DFF4E9; --nsx-border:#E5E7EB; --nsx-text:#16382B;
+ --ns-red-950:#9E2633; --ns-red-900:#D83B45; --ns-red-800:#C52D3D;
+ --ns-red-700:#D83B45; --ns-red-600:#D83B45; --ns-red-100:#FCE8EA;
+ --ns-red-50:#FFF5F6; --ns-border:#E5E7EB; --ns-text:#16382B;
+ --bs-primary:#168B5C; --bs-primary-rgb:22,139,92;
+ --bs-link-color:#168B5C; --bs-link-hover-color:#0F704A;
+ --ui-radius:16px; --ui-shadow:0 7px 24px rgba(15,55,38,.06);
+}
+html {color-scheme:light}
+body {font-family:Inter,"Segoe UI",system-ui,-apple-system,sans-serif;color:#16382B;background:#F7F9F8;-webkit-font-smoothing:antialiased}
+button,input,select,textarea {font:inherit}
+button,.btn,a,[role="button"] {transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease}
+:where(.card,.modal-content,.dropdown-menu,.popover,.toast,.nsx-shell) {border-radius:var(--ui-radius);border:1px solid #E5E7EB;box-shadow:var(--ui-shadow)}
+:where(.card,.modal-content) {background:#fff}
+:where(.btn,.form-control,.form-select,.input-group-text) {border-radius:12px}
+:where(.form-control,.form-select,input:not([type=checkbox]):not([type=radio]),textarea) {border-color:#E5E7EB}
+:where(.form-control,.form-select,input,textarea):focus-visible {outline:2px solid rgba(22,139,92,.25);outline-offset:1px;box-shadow:0 0 0 4px rgba(22,139,92,.09)}
+.btn-primary,.bg-primary {background:#168B5C!important;border-color:#168B5C!important;color:white!important}
+.btn-primary:hover {background:#0F704A!important;border-color:#0F704A!important;box-shadow:0 7px 18px rgba(22,139,92,.18)}
+.text-primary {color:#168B5C!important}
+.border-primary {border-color:#A9D9BE!important}
+:where(.badge.bg-primary,.badge.text-bg-primary) {background:#DFF4E9!important;color:#0F704A!important}
+:where(.table,table) {--bs-table-border-color:#E5E7EB}
+:where(.table thead th,table thead th) {background:#EAF7EF;color:#0F704A;font-weight:700;border-bottom:1px solid #D3E7DB}
+:where(.table tbody tr:hover,table tbody tr:hover) {background:#F2FAF5}
+:where(.modal-header) {background:linear-gradient(100deg,#fff,#F0F9F3);border-bottom:1px solid #E5E7EB}
+:where(.nav-pills .nav-link.active,.page-item.active .page-link) {background:#168B5C!important;border-color:#168B5C!important}
+:where(.nav-link:hover,.dropdown-item:hover) {color:#0F704A;background:#EAF7EF}
+:where(.dropdown-item.active,.dropdown-item:active) {background:#168B5C;color:white}
+:where(.alert-success) {background:#EAF7EF;color:#0F704A;border-color:#CFE9D8}
+:where(.alert-danger) {background:#FCE8EA;color:#A92D38;border-color:#F2CDD2}
+:where(.nsx-page) {background:radial-gradient(circle at 95% 0%,#EAF7EF 0,transparent 34%),#F7F9F8!important}
+:where(.nsx-shell) {background:#fff!important;border-radius:22px!important;box-shadow:0 14px 44px rgba(15,55,38,.065)!important}
+:where(.login-shell) {background:radial-gradient(circle at 15% 15%,#DFF4E9,transparent 34%),radial-gradient(circle at 85% 85%,#FCE8EA,transparent 30%),#F7F9F8!important}
+:where(.qx-tab) {border:1px solid #CFE9D8;background:#EAF7EF;color:#0F704A;border-radius:12px}
+:where(.qx-tab.active) {background:#168B5C;color:white;border-color:#168B5C;box-shadow:0 5px 15px rgba(22,139,92,.17)}
+:where(.qx-add-child-panel) {background:linear-gradient(150deg,#fff,#EAF7EF)}
+:where(.bi) {vertical-align:-.09em}
+@media(hover:hover) {:where(.card):hover {box-shadow:0 12px 32px rgba(15,55,38,.085)}}
+@media(max-width:767px) {:where(.card,.modal-content,.dropdown-menu) {border-radius:15px} :where(.btn,.form-control,.form-select) {min-height:40px}}
+@media(prefers-reduced-motion:reduce) {button,.btn,a,[role="button"] {transition:none!important}}

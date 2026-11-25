@@ -1,0 +1,198 @@
+--- TeachingAttendancePage_Optimized(3).tsx
++++ TeachingAttendancePage.tsx
+@@ -1,6 +1,7 @@
+ import {
+   collection,
+   deleteField,
++  setDoc,
+   doc,
+   query as firestoreQuery,
+   getFirestore,
+@@ -773,6 +774,12 @@
+   const [substitutions, setSubstitutions] = useState<SubstituteRecord[]>([]);
+   const [substitutionsReady, setSubstitutionsReady] = useState(false);
+   const db = useMemo(() => getFirestore(), []);
++  // Khóa theo giáo viên + tháng; không thay đổi dữ liệu điểm danh hiện có.
++  const [monthLocked, setMonthLocked] = useState(false);
++  const [lockReady, setLockReady] = useState(false);
++  const [lockDialogOpen, setLockDialogOpen] = useState(false);
++  const [lockSaving, setLockSaving] = useState(false);
++
+   useEffect(() => {
+     if (!user?.id) return;
+     return onSnapshot(
+@@ -834,6 +841,52 @@
+ 
+   const activeTeacherId = isAdmin ? selectedTeacherId : (user?.id ?? "");
+ 
++  const lockTeacherId = isAdmin ? selectedTeacherId : (user?.id ?? "");
++  const lockDocId = `${lockTeacherId}_${year}_${month}`;
++  useEffect(() => {
++    setLockReady(false);
++    setMonthLocked(false);
++    if (!user?.id || !lockTeacherId || lockTeacherId === "all") return;
++    return onSnapshot(
++      doc(db, "teachingAttendanceLocks", lockDocId),
++      (snapshot) => {
++        setMonthLocked(snapshot.exists() && snapshot.data().locked === true);
++        setLockReady(true);
++      },
++      (error) => {
++        console.error("Lỗi đọc khóa điểm danh:", error);
++        setLockReady(false); // Không cho ghi khi chưa xác minh được trạng thái.
++        handleToastError("Không kiểm tra được trạng thái khóa chấm công.");
++      },
++    );
++  }, [db, user?.id, lockTeacherId, lockDocId]);
++
++  const changeMonthLock = useCallback(async () => {
++    if (!isAdmin || !user?.id || !lockReady || lockTeacherId === "all" || lockSaving) return;
++    setLockSaving(true);
++    try {
++      await setDoc(doc(db, "teachingAttendanceLocks", lockDocId), {
++        teacherId: lockTeacherId,
++        year,
++        month,
++        locked: !monthLocked,
++        updatedBy: user.id,
++        updatedAt: serverTimestamp(),
++      }, { merge: true });
++      setLockDialogOpen(false);
++      handleToastSuccess(!monthLocked ? "Đã khóa chấm công tháng." : "Đã mở khóa chấm công tháng.");
++    } catch (error) {
++      console.error("Lỗi cập nhật khóa chấm công:", error);
++      handleToastError("Không cập nhật được khóa chấm công.");
++    } finally {
++      setLockSaving(false);
++    }
++  }, [isAdmin, user?.id, lockReady, lockTeacherId, lockSaving, db, lockDocId, year, month, monthLocked]);
++
++  const attendanceReadOnly = !lockReady || (monthLocked && !isAdmin);
++
++  useEffect(() => { setLockDialogOpen(false); setEditing(null); }, [lockDocId]);
++
+   const attendanceConditions = [
+     where("year", "==", year),
+ 
+@@ -1026,6 +1079,10 @@
+       date: Day,
+       hours: number | null | undefined,
+     ) => {
++      if (attendanceReadOnly) {
++        handleToastError(lockReady ? "Tháng này đã khóa chấm công." : "Đang kiểm tra trạng thái khóa chấm công.");
++        return;
++      }
+       setEditing({
+         teacherId,
+         studentId,
+@@ -1035,7 +1092,7 @@
+         value: toChoice(hours),
+       });
+     },
+-    [],
++    [attendanceReadOnly, lockReady],
+   );
+ 
+   const closeEdit = useCallback(() => setEditing(null), []);
+@@ -1043,6 +1100,10 @@
+   const persistDay = useCallback(
+     async (value?: Choice, recipients?: SubstituteRecipient[]) => {
+       if (!editing || saving || !user?.id) return;
++      if (!lockReady || (monthLocked && !isAdmin)) {
++        handleToastError("Tháng này đã khóa hoặc chưa kiểm tra được trạng thái khóa.");
++        return;
++      }
+       if (!substitutionsReady) {
+         handleToastError("Đang tải dữ liệu dạy thay. Vui lòng thử lại sau.");
+         return;
+@@ -1104,6 +1165,13 @@
+             "teachingAssignments",
+             `${teacherId}_${studentId}`,
+           );
++          // Đọc khóa ngay trong transaction để tránh ghi khi admin vừa khóa tháng.
++          const lockSnapshot = await transaction.get(
++            doc(db, "teachingAttendanceLocks", `${teacherId}_${year}_${month}`),
++          );
++          if (!isAdmin && lockSnapshot.exists() && lockSnapshot.data().locked === true) {
++            throw new Error("Tháng này đã khóa chấm công.");
++          }
+           const assignmentSnapshot = await transaction.get(assignmentRef);
+           // Firestore Rules không cho giáo viên get document dạy thay
+           // chưa tồn tại. Chỉ đọc khi listener xác nhận đã có bản ghi.
+@@ -1240,6 +1308,8 @@
+     [
+       editing,
+       saving,
++      lockReady,
++      monthLocked,
+       substitutionsReady,
+       user?.id,
+       isAdmin,
+@@ -1488,6 +1558,20 @@
+             />
+           )}
+ 
++          {lockTeacherId && lockTeacherId !== "all" && (
++            <div className="ta-lock-panel" aria-live="polite">
++              <span className={`ta-lock-status ${monthLocked ? "is-locked" : "is-open"}`}>
++                {!lockReady ? "⏳ Đang kiểm tra khóa" : monthLocked ? "🔒 Đã khóa chấm công" : "🔓 Đang mở chấm công"}
++              </span>
++              {isAdmin && (
++                <button type="button" className="ta-lock-button"
++                  disabled={!lockReady || lockSaving}
++                  onClick={() => setLockDialogOpen(true)}>
++                  {monthLocked ? "Mở khóa tháng" : "Khóa chấm công tháng"}
++                </button>
++              )}
++            </div>
++          )}
+           <div style={{ display: "flex", justifyContent: "center" }}>
+             <img
+               src={teachrighttop}
+@@ -1695,7 +1779,8 @@
+                 onEdit={openEdit}
+                 readOnly={
+                   activeTab !== "main" ||
+-                  (isAdmin && selectedTeacherId === "all")
++                  (isAdmin && selectedTeacherId === "all") ||
++                  attendanceReadOnly
+                 }
+                 substitutionDates={
+                   activeTab === "main"
+@@ -1761,7 +1846,7 @@
+             teacherLabel={teacherLabel}
+             onEdit={openEdit}
+             readOnly={
+-              activeTab !== "main" || (isAdmin && selectedTeacherId === "all")
++              activeTab !== "main" || (isAdmin && selectedTeacherId === "all") || attendanceReadOnly
+             }
+             substitutionDates={
+               activeTab === "main"
+@@ -1858,6 +1943,27 @@
+         </footer>
+       )}
+ 
++      {lockDialogOpen && isAdmin && lockTeacherId !== "all" && (
++        <div className="ta-overlay" onMouseDown={(e) => {
++          if (e.target === e.currentTarget && !lockSaving) setLockDialogOpen(false);
++        }}>
++          <section className="ta-dialog ta-lock-dialog" role="dialog" aria-modal="true" aria-label="Xác nhận khóa chấm công">
++            <h2>{monthLocked ? "🔓 Mở khóa chấm công" : "🔒 Khóa chấm công tháng"}</h2>
++            <p>Giáo viên: <strong>{teachers.find((t) => t.id === lockTeacherId)?.name ?? lockTeacherId}</strong></p>
++            <p>Tháng {String(month).padStart(2, "0")}/{year}</p>
++            <p>{monthLocked
++              ? "Giáo viên sẽ được phép cập nhật điểm danh và nhờ dạy thay trở lại."
++              : "Giáo viên sẽ không thể chỉnh sửa điểm danh hoặc nhờ dạy thay trong tháng này. Dữ liệu cũ được giữ nguyên."}</p>
++            <div className="ta-actions">
++              <button type="button" disabled={lockSaving} onClick={() => setLockDialogOpen(false)}>Hủy</button>
++              <button type="button" className="ta-primary" disabled={lockSaving || !lockReady} onClick={() => void changeMonthLock()}>
++                {lockSaving ? "Đang lưu..." : monthLocked ? "Xác nhận mở khóa" : "Xác nhận khóa"}
++              </button>
++            </div>
++          </section>
++        </div>
++      )}
++
+       {editing && (
+         <AttendanceDialog
+           key={`${editing.studentId}_${editing.dateKey}`}

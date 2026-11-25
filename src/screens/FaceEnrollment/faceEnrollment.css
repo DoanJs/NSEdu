@@ -1,0 +1,585 @@
+.hbm-enroll {
+  --hbm-green: #168B5C;
+  --hbm-dark: #4b1c1c;
+  --hbm-muted: #806767;
+  --hbm-line: #f3e4e4;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  color: var(--hbm-dark);
+  background: linear-gradient(135deg, #F7F9F8, #faf8f8 60%, #F7F9F8);
+  min-height: 100vh;
+  font-size: 14px;
+}
+.hbm-enroll * {
+  box-sizing: border-box;
+}
+.hbm-enroll button,
+.hbm-enroll input {
+  font: inherit;
+}
+.hbm-enroll button {
+  cursor: pointer;
+}
+.hbm-enroll button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.hbm-enroll__top {
+  height: 78px;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--hbm-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px clamp(18px, 4vw, 60px);
+}
+.hbm-enroll__brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.hbm-enroll__brand img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+.hbm-enroll__flower {
+  color: #ea879a;
+  font-size: 40px;
+  line-height: 1;
+}
+.hbm-enroll__brand strong {
+  display: block;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  color: #0F704A;
+}
+.hbm-enroll__brand small {
+  display: block;
+  font-size: 11px;
+  color: #815858;
+  margin-top: 3px;
+}
+.hbm-enroll__topright {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hbm-enroll__admin {
+  color: #806767;
+}
+.hbm-enroll__back {
+  border: 1px solid #fecaca;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: #168B5C;
+}
+.hbm-enroll__main {
+  max-width: 1480px;
+  margin: auto;
+  padding: 28px clamp(14px, 3vw, 42px) 56px;
+}
+.hbm-enroll__hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 105px;
+  margin-bottom: 17px;
+  overflow: hidden;
+}
+.hbm-enroll__heroicon {
+  width: 66px;
+  height: 66px;
+  flex-shrink: 0;
+  border: 2px solid #fca5a5;
+  border-radius: 19px;
+  display: grid;
+  place-items: center;
+  color: #168B5C;
+  font-size: 35px;
+  background: #fff;
+}
+.hbm-enroll__hero h1 {
+  font-size: clamp(22px, 2.5vw, 30px);
+  margin: 0 0 8px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+.hbm-enroll__hero p {
+  margin: 0;
+  color: #806767;
+  font-size: 15px;
+}
+.hbm-enroll__heroart {
+  margin-left: auto;
+  font-size: 45px;
+  color: #fecaca;
+  letter-spacing: 15px;
+  white-space: nowrap;
+}
+.hbm-enroll__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #f2edee;
+  border-radius: 18px;
+  padding: 15px 17px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 30px #214f2410;
+}
+.hbm-enroll__step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: #806767;
+  font-weight: 650;
+}
+.hbm-enroll__step b {
+  display: grid;
+  place-items: center;
+  flex: 0 0 39px;
+  height: 39px;
+  border-radius: 50%;
+  background: #f8eeee;
+  color: #40535b;
+  font-size: 17px;
+}
+.hbm-enroll__step.is-active {
+  background: #f7eeef;
+  color: #561d1d;
+}
+.hbm-enroll__step.is-active b {
+  background: #903333;
+  color: white;
+}
+.hbm-enroll__layout {
+  display: grid;
+  grid-template-columns: minmax(265px, 340px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.hbm-enroll__panel {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 8px 32px #234e2510;
+  border: 1px solid #f1eded;
+}
+.hbm-enroll__panel h2 {
+  margin: 0 0 18px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hbm-enroll__panel h2 > span {
+  display: grid;
+  place-items: center;
+  background: #b16a70;
+  color: white;
+  border-radius: 7px;
+  width: 27px;
+  height: 27px;
+}
+.hbm-enroll__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #e4dcdc;
+  border-radius: 11px;
+  padding: 0 12px;
+  height: 45px;
+  margin-bottom: 14px;
+  color: #997e80;
+}
+.hbm-enroll__search input {
+  border: 0;
+  outline: 0;
+  min-width: 0;
+  flex: 1;
+  color: #4b1c1c;
+  background: transparent;
+}
+.hbm-enroll__teacherlist {
+  max-height: 610px;
+  overflow-y: auto;
+  scrollbar-color: #e2cacc transparent;
+}
+.hbm-enroll__teacher {
+  width: 100%;
+  border: 1px solid transparent;
+  border-bottom-color: #f0f2f0;
+  background: white;
+  border-radius: 12px;
+  padding: 9px 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  color: #381919;
+}
+.hbm-enroll__teacher:hover {
+  background: #faf5f6;
+}
+.hbm-enroll__teacher.is-selected {
+  background: linear-gradient(120deg, #f7ebec, #f1e4e5);
+  border-color: #d5aaad;
+}
+.hbm-enroll__avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  background: #ecdadb;
+  color: #853030;
+  font-size: 19px;
+  font-weight: 750;
+  overflow: hidden;
+}
+.hbm-enroll__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hbm-enroll__teacherinfo {
+  flex: 1;
+  min-width: 0;
+}
+.hbm-enroll__teacherinfo strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+}
+.hbm-enroll__teacherinfo small,
+.hbm-enroll__person small {
+  display: inline-block;
+  background: #f4e3e5;
+  color: #762e2e;
+  border-radius: 999px;
+  padding: 3px 9px;
+  margin-top: 6px;
+  font-size: 11px;
+}
+.hbm-enroll__right {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.hbm-enroll__capturegrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(230px, 0.9fr);
+  gap: 16px;
+}
+.hbm-enroll__captureleft {
+  min-width: 0;
+}
+.hbm-enroll__view {
+  position: relative;
+  aspect-ratio: 4/3;
+  min-height: 240px;
+  border-radius: 14px;
+  background: linear-gradient(140deg, #efe7e7, #e5d7d8);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.hbm-enroll__video,
+.hbm-enroll__preview {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+}
+.hbm-enroll__video {
+  transform: scaleX(-1);
+}
+.hbm-enroll__oval {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -50%);
+  width: 48%;
+  height: 75%;
+  border: 4px solid #a14444;
+  border-radius: 48%;
+  box-shadow: 0 0 0 200px #00000012;
+  pointer-events: none;
+}
+.hbm-enroll__viewhint {
+  position: absolute;
+  bottom: 14px;
+  background: #143b31b9;
+  color: white;
+  padding: 7px 12px;
+  border-radius: 30px;
+  font-size: 12px;
+}
+.hbm-enroll__empty {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 18px;
+  color: #6e5151;
+}
+.hbm-enroll__empty > span {
+  font-size: 64px;
+  color: #a55c62;
+}
+.hbm-enroll__empty strong {
+  font-size: 17px;
+  color: #4d2828;
+}
+.hbm-enroll__empty small {
+  max-width: 260px;
+  line-height: 1.6;
+}
+.hbm-enroll__empty .hbm-enroll__successicon {
+  background: #9d3d3d;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 37px;
+  width: 80px;
+  height: 80px;
+  display: grid;
+  place-items: center;
+}
+.hbm-enroll__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.hbm-enroll__primary,
+.hbm-enroll__secondary {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-weight: 700;
+  transition: transform 0.15s;
+}
+.hbm-enroll__primary {
+  background: linear-gradient(135deg, #a53e3e, #812828);
+  color: white;
+  box-shadow: 0 5px 15px #2e984626;
+}
+.hbm-enroll__secondary {
+  background: #f5f0f1;
+  color: #582e2e;
+  border: 1px solid #ebe1e2;
+}
+.hbm-enroll__primary:hover:not(:disabled),
+.hbm-enroll__secondary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.hbm-enroll__guide {
+  background: linear-gradient(140deg, #f6ebec, #f7f0f0);
+  padding: 19px;
+  border-radius: 14px;
+}
+.hbm-enroll__guide h3 {
+  margin: 0 0 17px;
+  font-size: 16px;
+}
+.hbm-enroll__guide p {
+  margin: 0 0 14px;
+  line-height: 1.5;
+  color: #543838;
+}
+.hbm-enroll__privacy {
+  margin-top: 20px;
+  padding: 13px;
+  background: #ffffffb0;
+  border-radius: 11px;
+  color: #6a5454;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.hbm-enroll__submit {
+  display: grid;
+  gap: 13px;
+  margin-top: 15px;
+}
+.hbm-enroll__submit label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #6a5454;
+}
+.hbm-enroll__submit input {
+  margin-top: 3px;
+  accent-color: #953232;
+}
+.hbm-enroll__submit button {
+  justify-self: start;
+}
+.hbm-enroll__details {
+  min-height: 128px;
+}
+.hbm-enroll__person {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hbm-enroll__avatar--large {
+  width: 62px;
+  height: 62px;
+}
+.hbm-enroll__person strong {
+  display: block;
+  font-size: 16px;
+}
+.hbm-enroll__email {
+  margin-left: auto;
+  color: #785f5f;
+  overflow-wrap: anywhere;
+}
+.hbm-enroll__error {
+  background: #FFF1F3;
+  color: #b52832;
+  border: 1px solid #ffd5d5;
+  padding: 12px;
+  border-radius: 10px;
+  line-height: 1.6;
+}
+.hbm-enroll__notice {
+  background: #f6ebec;
+  color: #6a2222;
+  padding: 12px;
+  border-radius: 10px;
+}
+.hbm-enroll__muted {
+  color: #7f6464;
+  line-height: 1.6;
+}
+.hbm-enroll__donebtn {
+  margin-top: 12px;
+}
+@media (max-width: 1080px) {
+  .hbm-enroll__capturegrid {
+    grid-template-columns: 1fr;
+  }
+  .hbm-enroll__guide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 12px;
+  }
+  .hbm-enroll__guide h3,
+  .hbm-enroll__privacy {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 720px) {
+  .hbm-enroll__top {
+    height: auto;
+    min-height: 70px;
+    padding: 10px 15px;
+  }
+  .hbm-enroll__brand strong {
+    font-size: 17px;
+  }
+  .hbm-enroll__brand small {
+    font-size: 10px;
+  }
+  .hbm-enroll__admin,
+  .hbm-enroll__heroart {
+    display: none;
+  }
+  .hbm-enroll__hero {
+    min-height: auto;
+    padding: 10px 0;
+  }
+  .hbm-enroll__heroicon {
+    width: 49px;
+    height: 49px;
+    font-size: 27px;
+  }
+  .hbm-enroll__hero h1 {
+    font-size: 21px;
+  }
+  .hbm-enroll__hero p {
+    font-size: 12px;
+  }
+  .hbm-enroll__steps {
+    padding: 8px;
+    gap: 4px;
+  }
+  .hbm-enroll__step {
+    padding: 7px 2px;
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+    font-size: 10px;
+  }
+  .hbm-enroll__step b {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+    font-size: 14px;
+  }
+  .hbm-enroll__layout {
+    grid-template-columns: 1fr;
+  }
+  .hbm-enroll__panel {
+    padding: 15px;
+  }
+  .hbm-enroll__teacherlist {
+    max-height: 245px;
+  }
+  .hbm-enroll__capturegrid {
+    grid-template-columns: 1fr;
+  }
+  .hbm-enroll__guide {
+    grid-template-columns: 1fr;
+  }
+  .hbm-enroll__view {
+    min-height: 220px;
+  }
+  .hbm-enroll__email {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hbm-enroll__primary,
+  .hbm-enroll__secondary {
+    transition: none;
+  }
+}
+
+
+.hbm-face-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.hbm-face-status.is-registered {
+  color: #781e1e;
+}
+
+.hbm-face-status.is-unregistered {
+  color: #a06b28;
+}

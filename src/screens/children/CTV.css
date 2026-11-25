@@ -1,0 +1,93 @@
+
+.ctv-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px;
+  margin: 24px auto;
+  max-width: 760px;
+  background: #f9f1f1;
+  border: 1px solid #e9ced1;
+  border-radius: 16px;
+  color: #481b1b;
+}
+
+.ctv-notice-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f1dadc;
+  color: #168B5C;
+  font-size: 23px;
+}
+
+.ctv-notice-content h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.ctv-notice-content p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #705555;
+}
+
+@media (max-width: 600px) {
+  .ctv-notice {
+    margin: 16px 12px;
+    padding: 18px;
+    gap: 12px;
+  }
+}
+
+/* NUT DANG XUAT */
+.home-logout {
+  margin-top: auto;
+  padding: 24px 16px;
+  width: 100%;
+}
+
+.home-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 54px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+  color: #c03945;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.home-logout-btn i {
+  font-size: 24px;
+}
+
+.home-logout-btn:hover {
+  background: #FFF1F3;
+}
+
+@media (max-width: 700px) {
+  .home-logout {
+    padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  }
+}
+@media (max-width: 992px) {
+    .nsx-shell {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0;
+    }
+}

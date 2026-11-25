@@ -1,0 +1,406 @@
+/* Additive styles: keep existing TeachingAttendancePage.css unchanged */
+.ta-main-tabs,
+.ta-sub-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.ta-main-tabs button,
+.ta-sub-tabs button {
+  border: 1px solid #f1bdd0;
+  background: #fff9fc;
+  color: #9b3763;
+  border-radius: 13px;
+  padding: 11px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ta-main-tabs button.active,
+.ta-sub-tabs button.active {
+  background: #f8d7e5;
+  border-color: #dc8bb1;
+  color: #81264c;
+}
+.ta-sub-caption {
+  font-size: 13px;
+  color: #8f5570;
+  margin: 0 0 12px;
+}
+.ta-sub-dialog {
+  max-width: min(94vw, 600px);
+  max-height: 90dvh;
+  overflow-y: auto;
+}
+.ta-sub-form {
+  display: grid;
+  gap: 12px;
+}
+.ta-sub-help {
+  font-size: 13px;
+  color: #7c5267;
+  line-height: 1.5;
+}
+.ta-sub-warning {
+  font-size: 13px;
+  color: #9a3555;
+  background: #fff0f3;
+  border-radius: 10px;
+  padding: 10px;
+}
+.ta-sub-recipient,
+.ta-sub-add {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 105px auto;
+  gap: 8px;
+  align-items: center;
+}
+.ta-sub-recipient {
+  padding: 9px;
+  background: #fff6fa;
+  border-radius: 12px;
+}
+.ta-sub-recipient strong {
+  overflow-wrap: anywhere;
+}
+.ta-sub-form select,
+.ta-sub-form button {
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid #e9b6cb;
+  border-radius: 10px;
+  background: #fff;
+}
+.ta-sub-add button {
+  background: #f8dce8;
+  font-weight: 700;
+}
+.ta-sub-total {
+  font-size: 14px;
+  color: #893653;
+}
+.ta-sub-bubble {
+  /* background: #fbe1ed !important; */
+  background: orange !important;
+  color: #9e3464 !important;
+  font-size: 9px !important;
+  letter-spacing: -0.3px;
+}
+.ta-sub-footer {
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px solid #f0c9d8;
+  border-radius: 14px;
+  background: #fff5f9;
+}
+.ta-sub-footer strong {
+  color: #9a2856;
+}
+.ta-table button:disabled,
+.ta-mobile-day:disabled {
+  cursor: default;
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  .ta-main-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .ta-main-tabs button {
+    padding: 9px 4px;
+    font-size: 11px;
+  }
+  .ta-sub-recipient,
+  .ta-sub-add {
+    grid-template-columns: minmax(0, 1fr) 90px auto;
+  }
+  .ta-sub-form select,
+  .ta-sub-form button {
+    font-size: 12px;
+    padding: 7px 5px;
+  }
+  .ta-sub-dialog {
+    max-width: calc(100vw - 20px);
+  }
+}
+
+/* Tên trẻ ở dòng trên, tên giáo viên liên quan ở dòng dưới */
+.ta-student-name-row {
+  flex-wrap: wrap;
+}
+.ta-related-teacher {
+  display: block;
+  flex-basis: 100%;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #9b7185;
+  overflow-wrap: anywhere;
+  margin-top: 3px;
+}
+.ta-mobile-student-details .ta-related-teacher {
+  font-size: 12px;
+}
+
+/* Tổng hợp giờ công – đặt phía trên ba tab, luôn hiển thị */
+.ta-work-summary {
+  margin: 18px 0 16px;
+  padding: 18px;
+  border: 1px solid #f1c6d8;
+  border-radius: 20px;
+  background: #fffafd;
+  box-shadow: 0 5px 18px rgba(175, 60, 112, 0.06);
+}
+.ta-work-summary-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.ta-work-summary-heading h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #a32660;
+}
+.ta-work-summary-heading p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #91647b;
+}
+.ta-work-summary-tag {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fce8f1;
+  color: #a13c6c;
+  font-size: 11px;
+  font-weight: 700;
+}
+.ta-work-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.ta-work-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  padding: 16px 13px;
+  border-radius: 15px;
+}
+.ta-work-summary-item > span {
+  font-size: 13px;
+  font-weight: 750;
+}
+.ta-work-summary-item > strong {
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+.ta-work-summary-item > strong small {
+  font-size: 12px;
+  font-weight: 600;
+}
+.ta-work-summary-item > small {
+  font-size: 11px;
+  line-height: 1.4;
+  opacity: 0.8;
+}
+.ta-work-summary-item.is-own {
+  background: #fff0f7;
+  color: #99375e;
+}
+.ta-work-summary-item.is-received {
+  background: #f8ebec;
+  color: #762e2e;
+}
+.ta-work-summary-item.is-delegated {
+  background: #fff0ef;
+  color: #b74e61;
+}
+.ta-work-summary-item.is-actual {
+  background: #f7deeb;
+  color: #922b5b;
+}
+.ta-work-summary-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 13px;
+  font-size: 12px;
+  color: #81536b;
+}
+.ta-work-summary-note b {
+  color: #743450;
+}
+.ta-work-summary-note .is-negative {
+  color: #c3425e;
+}
+.ta-work-summary-note .is-positive {
+  color: #7f3030;
+}
+.ta-work-summary-explain {
+  margin-left: auto;
+}
+@media (max-width: 900px) {
+  .ta-work-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .ta-work-summary {
+    padding: 12px;
+    border-radius: 15px;
+  }
+  .ta-work-summary-heading h2 {
+    font-size: 15px;
+  }
+  .ta-work-summary-tag {
+    font-size: 10px;
+  }
+  .ta-work-summary-grid {
+    gap: 8px;
+  }
+  .ta-work-summary-item {
+    padding: 12px 10px;
+  }
+  .ta-work-summary-item > span {
+    font-size: 12px;
+  }
+  .ta-work-summary-item > strong {
+    font-size: 24px;
+  }
+  .ta-work-summary-explain {
+    margin-left: 0;
+  }
+}
+
+/* Bổ sung khóa chấm công tháng - giữ nguyên toàn bộ CSS cũ */
+.ta-lock-panel { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.ta-lock-status { padding:9px 12px; border-radius:12px; font-size:13px; font-weight:700; }
+.ta-lock-status.is-open { background:#f7e9ea; color:#6e2929; }
+.ta-lock-status.is-locked { background:#fff0f3; color:#a52b56; }
+.ta-lock-button { border:1px solid #df9bb8; background:#fff7fb; color:#922c5b; border-radius:12px; padding:10px 14px; font-weight:700; cursor:pointer; }
+.ta-lock-button:disabled { opacity:.55; cursor:not-allowed; }
+.ta-lock-dialog { max-width:min(94vw,480px); }
+.ta-lock-dialog p { line-height:1.55; }
+@media (max-width:600px) { .ta-lock-panel { width:100%; justify-content:center; } .ta-lock-button { width:100%; } }
+
+/* =====================================
+   MONTH ATTENDANCE LOCK ICON
+   ===================================== */
+
+.ta-lock-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  border: 1px solid #dcbec0;
+  border-radius: 10px;
+
+  background: #f9f1f1;
+  color: #933a3a;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Chưa khóa */
+.ta-lock-icon-btn.is-unlocked {
+  background: #f9f1f1;
+  border-color: #dcbec0;
+  color: #933a3a;
+}
+
+/* Đã khóa */
+.ta-lock-icon-btn.is-locked {
+  background: #FFF1F3;
+  border-color: #f4bcbc;
+  color: #e05252;
+}
+
+.ta-lock-icon-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(0.97);
+}
+
+.ta-lock-icon-btn:focus-visible {
+  outline: 3px solid #d5abae;
+  outline-offset: 2px;
+}
+
+.ta-lock-icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .ta-lock-icon-btn {
+    width: 34px;
+    height: 34px;
+  }
+}
+/* BT: trang thai ban tru, khong tinh vao gio day */
+.ta-bubble.ta-boarding { background: #e9d5ff; border-color: #c4a2ef; color: #6b21a8; font-size: 11px; }
+
+/* Thống kê số lượt bán trú trên từng hàng trẻ */
+.ta-row-boarding-total { margin-top: 4px; color: #7553a6; font-size: 18px; font-weight: 900; white-space: nowrap; }
+.ta-row-boarding-total strong { font-size: 15px; }
+.ta-heading-boarding { color: #7553a6; font-size: 12px; font-weight: 700; }
+.ta-mobile-metrics > .ta-mobile-boarding-total { background: #f4efff; border-color: #ded0f6; }
+.ta-mobile-metrics > .ta-mobile-boarding-total span,
+.ta-mobile-metrics > .ta-mobile-boarding-total strong { color: #7553a6; }
+
+/* Tổng giờ / giờ yêu cầu - Bán trú: cùng một dòng */
+.ta-total-inline { white-space: nowrap; }
+.ta-total-inline .ta-row-boarding-total { display: inline; margin-top: 0; margin-left: 3px; }
+
+/* Card tổng hợp bán trú - chỉ bổ sung, không thay đổi các card cũ */
+.ta-work-summary-item.is-boarding {
+  background: #f1eafa;
+  color: #74419d;
+}
+
+
+/* Nút chuyển sang trang tổng hợp giờ học trẻ */
+.ta-summary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border-radius: 13px;
+  background: #168B5C;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(130,31,31, 0.16);
+  transition: background 0.2s ease;
+}
+
+.ta-summary-link:hover {
+  background: #651010;
+  color: #fff;
+}
+
+.ta-summary-link:focus-visible {
+  outline: 3px solid #dba9ad;
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .ta-summary-link {
+    width: 100%;
+    min-height: 46px;
+  }
+}

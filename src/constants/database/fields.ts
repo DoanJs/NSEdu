@@ -1,0 +1,62 @@
+export const data_fields = [
+  {
+    id: "72yiP0hy8JvWNzkfRvFC",
+    name: "Tiền ngôn ngữ",
+  },
+  {
+    id: "D9X7OJTeJaM35bAmjBXW",
+    name: "ABLLS",
+  },
+  {
+    id: "HkuzPtPgYlMooJWEnBda",
+    name: "Tiếng Việt",
+  },
+  {
+    id: "L2EtGPafBpvAZZw0OJO7",
+    name: "Tiền học đường",
+  },
+  {
+    id: "Pu6SZQyd27wikZzkvLRi",
+    name: "Vận động thô",
+  },
+  {
+    id: "RypjxfEWSiDlkhyfvMRt",
+    name: "Ngôn ngữ hiểu",
+  },
+  {
+    id: "bwqVFGozJmfXnIwChrcD",
+    name: "Nhận thức",
+  },
+  {
+    id: "ecp6XI9D7tjbmcPiolmg",
+    name: "Vận động tinh",
+  },
+  {
+    id: "iaQrRpHfqbeGIJ5qSKjR",
+    name: "Giác quan",
+  },
+  {
+    id: "lAKIPjnNFfdWoK0bS4vd",
+    name: "Hành vi",
+  },
+  {
+    id: "sGrlMWhpSN1GXBAfztHL",
+    name: "Ngôn ngữ diễn đạt",
+  },
+  {
+    id: "uhOtRMlYeF1yO3aRMfey",
+    name: "Kỹ năng xã hội",
+  },
+  {
+    id: "uvylhHHZLVTnTpfsf3n3",
+    name: "Toán",
+  },
+  {
+    id: "vevLNEOgpsIPimRgnLqS",
+    name: "Phát âm",
+  },
+  {
+    id: "wVgUYmEzLBLSEIqjOfIK",
+    name: "Kỹ năng chơi",
+  },
+];
