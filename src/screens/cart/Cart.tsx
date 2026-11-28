@@ -310,19 +310,33 @@ function GoalCard({
   // interventions: any[]
 }) {
   const { removeCart } = useCartStore();
+  const { cartEdit } = useCartEditStore();
 
   return (
     <article className="goal-card">
       <button
         className="remove-btn"
-        onClick={() => {
-          removeCart(goal.id);
-          deleteDocData({
-            nameCollect: "carts",
-            id: goal.id,
-            metaDoc: "carts",
-          });
-        }}
+       onClick={async () => {
+  try {
+    // Chỉnh sửa kế hoạch: chỉ xoá khỏi Zustand
+    if (cartEdit) {
+      removeCart(goal.id);
+      return;
+    }
+
+    // Tạo kế hoạch mới: xoá trên Firestore
+    await deleteDocData({
+      nameCollect: "carts",
+      id: goal.id,
+      metaDoc: "carts",
+    });
+
+    removeCart(goal.id);
+  } catch (error) {
+    console.error("Lỗi xoá cart:", error);
+    handleToastError("Không thể xoá mục tiêu!");
+  }
+}}
       >
         <i className="bi bi-trash3-fill"></i>
       </button>

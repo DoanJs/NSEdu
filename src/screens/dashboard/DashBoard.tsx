@@ -64,6 +64,7 @@ export default function DashBoard() {
   const { id } = useParams();
   const { user } = useUserStore();
   const isAdmin = user && user.role === "admin";
+  const isTeacher = user && user.role === "teacher";
 
   useViewingChild({
     childId: id,
@@ -406,9 +407,8 @@ export default function DashBoard() {
               selectNavbar={selectNavbar}
               setSelectNavbar={setSelectNavbar}
             /> */}
-            {user?.role === "admin" &&
-              // user?.email === "Catbuilc.95@gmail.com" && (
-              user?.email === "demo@gmail.com" && (
+            {
+              isAdmin && (
                 <MenuItem
                   icon="bi-bank2"
                   label="Ngân hàng mục tiêu"
@@ -445,7 +445,9 @@ export default function DashBoard() {
               setSidebarOpen={setSidebarOpen}
               isComment={handleCommentTotal(plans.concat(reports))}
             />
-            <MenuItem
+            {
+              isAdmin &&
+<MenuItem
               icon="bi-cart-check"
               label="Giỏ mục tiêu"
               badge={carts.length}
@@ -454,6 +456,7 @@ export default function DashBoard() {
               setSelectNavbar={setSelectNavbar}
               setSidebarOpen={setSidebarOpen}
             />
+            }
             <MenuItem
               icon="bi-folder2-open"
               label="Tài liệu tải lên"
@@ -509,7 +512,7 @@ export default function DashBoard() {
 
             {openLeft && (
               <div className="user-dropdown-menu">
-                {user?.role === "admin" && (
+                {isAdmin && (
                   <Link
                     onClick={() => {
                       setOpenLeft(false);
@@ -547,7 +550,7 @@ export default function DashBoard() {
                   Đổi mật khẩu
                 </Link>
 
-                {user?.role === "admin" && (
+                {isAdmin && (
                   <Link
                     onClick={() => {
                       setOpenLeft(false);
@@ -705,7 +708,7 @@ export default function DashBoard() {
 
               {open && (
                 <div className="user-dropdown-menu">
-                  {user?.role === "admin" && (
+                  {isAdmin && (
                     <Link
                       onClick={() => setOpen(false)}
                       to="./admin"
@@ -716,15 +719,6 @@ export default function DashBoard() {
                     </Link>
                   )}
 
-                  {/* <Link
-                    onClick={() => setOpen(false)}
-                    to="./teacherevaluation"
-                    className="dropdown-item-custom text-decoration-none"
-                  >
-                    <i className="bi bi-person-check-fill"></i>
-                    Đánh giá giáo viên
-                  </Link> */}
-
                   <Link
                     onClick={() => setOpen(false)}
                     to="./changepassword"
@@ -734,7 +728,7 @@ export default function DashBoard() {
                     Đổi mật khẩu
                   </Link>
 
-                  {user?.role === "admin" && (
+                  {isAdmin && (
                     <Link
                       onClick={() => setOpen(false)}
                       to="../register"

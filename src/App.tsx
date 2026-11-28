@@ -53,6 +53,7 @@ export default function App() {
   usePresence();
 
   const { setUser, user } = useUserStore();
+  const isAdmin = user&&user.role === "admin"
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
     isLoading: true,
@@ -203,7 +204,7 @@ export default function App() {
         <Route
           path="/faceenrollment"
           element={
-            user && user.role === "admin" ? (
+            isAdmin ? (
               <FaceEnrollmentPage
                 auth={auth}
                 db={db}
@@ -219,7 +220,7 @@ export default function App() {
         <Route
           path="/adminattendance"
           element={
-            user && user.role === "admin" ? (
+            isAdmin ? (
               <AdminAttendancePage />
             ) : (
               <Navigate to="/login" replace />
@@ -241,7 +242,7 @@ export default function App() {
         <Route
           path="/children-monthly-hours"
           element={
-            user && user.role === "admin" ? (
+            isAdmin ? (
               <ChildrenMonthlyHoursPage />
             ) : (
               <Navigate to="/login" replace />
@@ -252,7 +253,7 @@ export default function App() {
         <Route
           path="/adminteachingattendance"
           element={
-            user && user.role === "admin" ? (
+            isAdmin ? (
               <AdminTeachingPage />
             ) : (
               <Navigate to="/login" replace />
@@ -275,8 +276,7 @@ export default function App() {
           <Route
             path="bank"
             element={
-              // authState.user?.email === "catbuilc.95@gmail.com" ? (
-              authState.user?.email === "demo@gmail.com" ? (
+              isAdmin ? (
                 <GoalBankBootstrapGreen />
               ) : (
                 <Navigate to="/" replace />
@@ -291,13 +291,19 @@ export default function App() {
           <Route path="reportdetail" element={<ReportDetailBootstrapGreen />} />
           <Route path="addreport" element={<AddReportBootstrapGreen />} />
           <Route path="pending" element={<PendingApprovalBootstrapGreen />} />
-          <Route path="cart" element={<GoalCartBootstrapGreen />} />
+          <Route path="cart" element={
+              isAdmin ? (
+                <GoalCartBootstrapGreen />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }/>
           <Route path="changepassword" element={<ChangePassword />} />
           <Route path="setting" element={<UserSettingPage />} />
           <Route
             path="admin"
             element={
-              authState.user && [ADMINID].includes(authState.user.uid) ? (
+              isAdmin ? (
                 <AdminScreen />
               ) : (
                 <Navigate to="/" replace />
@@ -308,7 +314,7 @@ export default function App() {
         <Route
           path="register"
           element={
-            authState.user && [ADMINID].includes(authState.user.uid) ? (
+            isAdmin ? (
               <RegisterBootstrapGreen />
             ) : (
               <Navigate to="/" replace />

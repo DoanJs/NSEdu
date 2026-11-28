@@ -318,8 +318,6 @@ export default function PlanDetailScreen() {
     }
   };
 
-  console.log(planTasks)
-
   return (
     <>
       <style>{css}</style>
